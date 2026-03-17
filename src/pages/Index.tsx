@@ -103,13 +103,11 @@ export default function Index() {
 
           {/* Headline */}
           <div className="text-center mb-10">
-            <h1 id="hero-heading" className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight tracking-tight mb-4">
-              Merge PDF Files Online
-              <span className="block text-white mt-1">
-                Free &amp; No Login Required
-              </span>
+            <h1 id="hero-heading" className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight mb-4">
+              <span className="text-white block">Merge PDF Files Online</span>
+              <span className="block text-blue-400 mt-1">Free &amp; No Login Required</span>
             </h1>
-            <p className="text-xl sm:text-2xl text-white max-w-3xl mx-auto leading-relaxed font-medium">
+            <p className="text-xl sm:text-2xl text-black max-w-3xl mx-auto leading-relaxed font-medium">
               Combine multiple PDF files into one in seconds. No signup, no ads, no server uploads —
               just fast, secure, browser-based PDF merging.
             </p>
