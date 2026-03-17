@@ -60,6 +60,7 @@ export default function Index() {
           </a>
           <nav className="hidden md:flex items-center gap-6" aria-label="Main navigation">
             <a href="#tool" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Merge Tool</a>
+            <a href="/image-to-pdf" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Image to PDF</a>
             <a href="#how-to" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">How It Works</a>
             <a href="#faq" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">FAQ</a>
           </nav>
