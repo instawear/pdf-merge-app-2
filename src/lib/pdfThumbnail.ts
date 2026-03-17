@@ -32,6 +32,7 @@ export async function generatePDFThumbnail(file: File, maxWidth: number = 120, m
     await page.render({
       canvasContext: context,
       viewport: scaledViewport,
+      canvas,
     }).promise;
 
     // Convert canvas to data URL
