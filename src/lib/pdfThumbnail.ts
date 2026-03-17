@@ -4,7 +4,7 @@ import pdfjsWorker from 'pdfjs-dist/build/pdf.worker.mjs?url';
 // Set the worker URL
 pdfjsLib.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
-export async function generatePDFThumbnail(file: File, maxWidth: number = 120, maxHeight: number = 160): Promise<string | undefined> {
+export async function generatePDFThumbnail(file: File, maxWidth: number = 160, maxHeight: number = 220): Promise<string | undefined> {
   try {
     const arrayBuffer = await file.arrayBuffer();
     const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;

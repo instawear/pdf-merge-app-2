@@ -84,7 +84,7 @@ export default function Index() {
 
         <div className="relative z-10 container mx-auto max-w-6xl px-4 pt-14 pb-8 sm:pt-20 sm:pb-12">
           {/* ── THE TOOL (MOVED TO TOP) ── */}
-          <div className="w-full max-w-2xl mx-auto mb-12">
+          <div className="w-full max-w-4xl mx-auto mb-12">
             <PDFMergePage />
           </div>
 
@@ -105,18 +105,18 @@ export default function Index() {
           <div className="text-center mb-10">
             <h1 id="hero-heading" className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight tracking-tight mb-4">
               Merge PDF Files Online
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-indigo-300 mt-1">
+              <span className="block text-white mt-1">
                 Free &amp; No Login Required
               </span>
             </h1>
-            <p className="text-lg sm:text-xl text-blue-100/80 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl sm:text-2xl text-white max-w-3xl mx-auto leading-relaxed font-medium">
               Combine multiple PDF files into one in seconds. No signup, no ads, no server uploads —
               just fast, secure, browser-based PDF merging.
             </p>
           </div>
 
           {/* Microcopy */}
-          <p className="text-center text-sm text-blue-100 font-medium mt-6">No login · Completely free · Ad-free · Fast · Works on all devices</p>
+          <p className="text-center text-base text-white font-semibold mt-6">No login · Completely free · Ad-free · Fast · Works on all devices</p>
         </div>
       </section>
 

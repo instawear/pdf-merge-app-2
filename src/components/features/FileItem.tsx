@@ -34,12 +34,12 @@ export default function FileItem({
       )}
     >
       {/* Order badge */}
-      <div className="flex-shrink-0 w-7 h-7 rounded-full bg-blue-600 text-white text-xs font-bold flex items-center justify-center">
+      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600 text-white text-sm font-bold flex items-center justify-center">
         {index + 1}
       </div>
 
       {/* PDF Thumbnail or Icon */}
-      <div className="flex-shrink-0 w-10 h-12 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-100 dark:border-red-900/50 flex flex-col items-center justify-center gap-0.5 overflow-hidden">
+      <div className="flex-shrink-0 w-20 h-28 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-100 dark:border-red-900/50 flex flex-col items-center justify-center gap-0.5 overflow-hidden">
         {file.thumbnail ? (
           <img
             src={file.thumbnail}

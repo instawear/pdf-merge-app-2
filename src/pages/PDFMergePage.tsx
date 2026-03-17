@@ -294,16 +294,16 @@ function FileItem({
 }: FileItemProps) {
   return (
     <div className={cn(
-      'group flex items-center gap-3 p-3 sm:p-4 rounded-xl border bg-card transition-all duration-150',
+      'group flex items-center gap-4 p-4 sm:p-5 rounded-xl border bg-card transition-all duration-150',
       isDragging
         ? 'border-blue-400 shadow-lg shadow-blue-500/10 bg-blue-50/50 dark:bg-blue-950/30 scale-[1.02]'
         : 'border-border hover:border-blue-200 hover:shadow-sm'
     )}>
-      <div className="flex-shrink-0 w-7 h-7 rounded-full bg-blue-600 text-white text-xs font-bold flex items-center justify-center">
+      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600 text-white text-sm font-bold flex items-center justify-center">
         {index + 1}
       </div>
 
-      <div className="flex-shrink-0 w-10 h-12 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-100 dark:border-red-900/50 flex flex-col items-center justify-center gap-0.5 overflow-hidden">
+      <div className="flex-shrink-0 w-20 h-28 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-100 dark:border-red-900/50 flex flex-col items-center justify-center gap-0.5 overflow-hidden">
         {file.thumbnail ? (
           <img
             src={file.thumbnail}
