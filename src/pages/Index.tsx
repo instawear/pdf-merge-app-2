@@ -107,8 +107,16 @@ export default function Index() {
               <span className="text-white block">Merge PDF Files Online</span>
               <span className="block text-blue-400 mt-2">Free &amp; No Login Required</span>
             </h1>
-            <div className="bg-gradient-to-br from-white via-blue-50 to-indigo-100 rounded-3xl p-10 sm:p-12 inline-block max-w-3xl shadow-2xl border border-blue-100 hover:shadow-3xl transition-all duration-300">
-              <p className="text-2xl sm:text-3xl text-gray-900 leading-relaxed font-semibold tracking-tight">
+            <div className="inline-block max-w-3xl">
+              <p className="text-2xl sm:text-3xl lg:text-4xl text-white leading-relaxed font-bold tracking-tight" style={{
+                textShadow: `
+                  0 2px 4px rgba(0, 0, 0, 0.8),
+                  0 4px 8px rgba(59, 130, 246, 0.6),
+                  0 8px 16px rgba(99, 102, 241, 0.4),
+                  0 12px 24px rgba(0, 0, 0, 0.5),
+                  0 0 20px rgba(59, 130, 246, 0.3)
+                `
+              }}>
                 💨 Combine multiple PDF files into one in seconds.<br />
                 🔒 No signup, no ads, no server uploads —<br />
                 ⚡ just fast, secure, browser-based PDF merging.
