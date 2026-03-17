@@ -6,7 +6,7 @@ import { useImageFiles } from '@/hooks/useImageFiles';
 import { useImageToPDF } from '@/hooks/useImageToPDF';
 
 export default function ImageToPDFTool() {
-  const { images, addFiles, removeFile, reorderFiles, clearFiles, formatFileSize } = useImageFiles();
+  const { files: images, addFiles, removeFile, reorderFiles, clearFiles, formatFileSize } = useImageFiles();
   const { status, progress, error, convertToPDF, reset } = useImageToPDF();
   const [showDropZone, setShowDropZone] = useState(true);
   const [pageSize, setPageSize] = useState<'a4' | 'letter' | 'auto'>('auto');
