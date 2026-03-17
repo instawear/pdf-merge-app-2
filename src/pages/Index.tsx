@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Moon, Sun, Shield, Star, Zap, FileText, Scissors, Archive, FileType2, ChevronDown as ChevronDownIcon, ArrowUpDown, Upload, Download } from 'lucide-react';
 import heroBg from '@/assets/hero-bg.jpg';
 import { cn } from '@/lib/utils';
-import PDFMergePage from './PDFMergePage';
+import PDFMergeTool from '@/components/features/PDFMergeTool';
 
 
 // ─── FAQ Item ──────────────────────────────────────────────────────────────
@@ -85,7 +85,7 @@ export default function Index() {
         <div className="relative z-10 container mx-auto max-w-6xl px-4 pt-14 pb-8 sm:pt-20 sm:pb-12">
           {/* ── THE TOOL (MOVED TO TOP) ── */}
           <div className="w-full max-w-4xl mx-auto mb-12">
-            <PDFMergePage />
+            <PDFMergeTool />
           </div>
 
           {/* Trust badges */}
