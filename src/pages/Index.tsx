@@ -108,15 +108,7 @@ export default function Index() {
               <span className="block text-blue-400 mt-2">Free &amp; No Login Required</span>
             </h1>
             <div className="inline-block max-w-3xl">
-              <p className="text-2xl sm:text-3xl lg:text-4xl text-white leading-relaxed font-bold tracking-tight" style={{
-                textShadow: `
-                  0 2px 4px rgba(0, 0, 0, 0.8),
-                  0 4px 8px rgba(59, 130, 246, 0.6),
-                  0 8px 16px rgba(99, 102, 241, 0.4),
-                  0 12px 24px rgba(0, 0, 0, 0.5),
-                  0 0 20px rgba(59, 130, 246, 0.3)
-                `
-              }}>
+              <p className="text-lg sm:text-xl text-white leading-relaxed font-medium">
                 💨 Combine multiple PDF files into one in seconds.<br />
                 🔒 No signup, no ads, no server uploads —<br />
                 ⚡ just fast, secure, browser-based PDF merging.
