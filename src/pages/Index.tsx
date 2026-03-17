@@ -107,10 +107,12 @@ export default function Index() {
               <span className="text-white block">Merge PDF Files Online</span>
               <span className="block text-blue-400 mt-1">Free &amp; No Login Required</span>
             </h1>
-            <p className="text-xl sm:text-2xl text-black max-w-3xl mx-auto leading-relaxed font-medium">
-              Combine multiple PDF files into one in seconds. No signup, no ads, no server uploads —
-              just fast, secure, browser-based PDF merging.
-            </p>
+            <div className="bg-white rounded-2xl p-8 inline-block">
+              <p className="text-xl sm:text-2xl text-black max-w-3xl mx-auto leading-relaxed font-medium">
+                Combine multiple PDF files into one in seconds. No signup, no ads, no server uploads —
+                just fast, secure, browser-based PDF merging.
+              </p>
+            </div>
           </div>
 
           {/* Microcopy */}
