@@ -66,6 +66,7 @@ function usePDFFiles() {
 
     const processed: PDFFile[] = await Promise.all(
       uniqueFiles.map(async file => {
+        const pageCount = await getPageCount(file);
         const thumbnail = await generatePDFThumbnail(file);
         return {
           id: generateId(),
@@ -73,8 +74,7 @@ function usePDFFiles() {
           name: file.name,
           size: file.size,
           pageCount,
-          thumbnaile.size,
-          pageCount,
+          thumbnail,
         };
       })
     );
