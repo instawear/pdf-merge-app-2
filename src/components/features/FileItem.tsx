@@ -38,10 +38,20 @@ export default function FileItem({
         {index + 1}
       </div>
 
-      {/* PDF Icon */}
-      <div className="flex-shrink-0 w-10 h-12 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-100 dark:border-red-900/50 flex flex-col items-center justify-center gap-0.5">
-        <FileText className="w-5 h-5 text-red-500" />
-        <span className="text-[9px] font-bold text-red-500 uppercase tracking-wide">PDF</span>
+      {/* PDF Thumbnail or Icon */}
+      <div className="flex-shrink-0 w-10 h-12 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-100 dark:border-red-900/50 flex flex-col items-center justify-center gap-0.5 overflow-hidden">
+        {file.thumbnail ? (
+          <img
+            src={file.thumbnail}
+            alt={`Thumbnail of ${file.name}`}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <>
+            <FileText className="w-5 h-5 text-red-500" />
+            <span className="text-[9px] font-bold text-red-500 uppercase tracking-wide">PDF</span>
+          </>
+        )}
       </div>
 
       {/* File info */}

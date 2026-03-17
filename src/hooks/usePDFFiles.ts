@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react';
 import { PDFDocument } from 'pdf-lib';
 import { PDFFile } from '@/types';
 import { toast } from 'sonner';
+import { generatePDFThumbnail } from '@/lib/pdfThumbnail';
 
 function generateId() {
   return Math.random().toString(36).slice(2, 10);
@@ -48,12 +49,14 @@ export function usePDFFiles() {
     const processed: PDFFile[] = await Promise.all(
       uniqueFiles.map(async file => {
         const pageCount = await getPageCount(file);
+        const thumbnail = await generatePDFThumbnail(file);
         return {
           id: generateId(),
           file,
           name: file.name,
           size: file.size,
           pageCount,
+          thumbnail,
         };
       })
     );
