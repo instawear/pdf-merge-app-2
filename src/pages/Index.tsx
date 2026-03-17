@@ -246,36 +246,9 @@ export default function Index() {
           <div className="absolute inset-0 bg-gradient-to-b from-blue-950/85 via-indigo-950/80 to-background" />
         </div>
 
-        <div className="relative z-10 container mx-auto max-w-6xl px-4 pt-14 pb-28 sm:pt-20 sm:pb-36">
-          {/* Trust badges */}
-          <div className="flex flex-wrap items-center justify-center gap-3 mb-7">
-            {[
-              { icon: Shield, label: '100% Secure — In-Browser' },
-              { icon: Zap, label: 'Instant — No Upload' },
-              { icon: Star, label: 'Free Forever — No Login' },
-            ].map(({ icon: Icon, label }) => (
-              <span key={label} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/10 border border-white/20 text-white backdrop-blur-sm">
-                <Icon className="w-3.5 h-3.5 text-blue-300" />{label}
-              </span>
-            ))}
-          </div>
-
-          {/* Headline */}
-          <div className="text-center mb-10">
-            <h1 id="hero-heading" className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight tracking-tight mb-4">
-              Merge PDF Files Online
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-indigo-300 mt-1">
-                Free &amp; No Login Required
-              </span>
-            </h1>
-            <p className="text-lg sm:text-xl text-blue-100/80 max-w-2xl mx-auto leading-relaxed">
-              Combine multiple PDF files into one in seconds. No signup, no ads, no server uploads —
-              just fast, secure, browser-based PDF merging.
-            </p>
-          </div>
-
-          {/* ── THE TOOL ── */}
-          <section id="tool" className="relative w-full max-w-2xl mx-auto" aria-label="PDF Merge Tool">
+        <div className="relative z-10 container mx-auto max-w-6xl px-4 pt-14 pb-8 sm:pt-20 sm:pb-12">
+          {/* ── THE TOOL (MOVED TO TOP) ── */}
+          <section id="tool" className="relative w-full max-w-2xl mx-auto mb-12" aria-label="PDF Merge Tool">
             <div className="bg-card border border-border rounded-3xl shadow-2xl shadow-black/20 overflow-hidden">
 
               {/* Tool header */}
@@ -523,6 +496,33 @@ export default function Index() {
               </div>
             </div>
           </section>
+
+          {/* Trust badges */}
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-7 mt-16">
+            {[
+              { icon: Shield, label: '100% Secure — In-Browser' },
+              { icon: Zap, label: 'Instant — No Upload' },
+              { icon: Star, label: 'Free Forever — No Login' },
+            ].map(({ icon: Icon, label }) => (
+              <span key={label} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/10 border border-white/20 text-white backdrop-blur-sm">
+                <Icon className="w-3.5 h-3.5 text-blue-300" />{label}
+              </span>
+            ))}
+          </div>
+
+          {/* Headline */}
+          <div className="text-center mb-10">
+            <h1 id="hero-heading" className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight tracking-tight mb-4">
+              Merge PDF Files Online
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-indigo-300 mt-1">
+                Free &amp; No Login Required
+              </span>
+            </h1>
+            <p className="text-lg sm:text-xl text-blue-100/80 max-w-2xl mx-auto leading-relaxed">
+              Combine multiple PDF files into one in seconds. No signup, no ads, no server uploads —
+              just fast, secure, browser-based PDF merging.
+            </p>
+          </div>
 
           {/* Microcopy */}
           <p className="text-center text-sm text-blue-200/60 mt-6">No login · Completely free · Ad-free · Fast · Works on all devices</p>
