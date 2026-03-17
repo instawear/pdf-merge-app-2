@@ -116,7 +116,7 @@ export default function Index() {
           </div>
 
           {/* Microcopy */}
-          <p className="text-center text-sm text-blue-200/60 mt-6">No login · Completely free · Ad-free · Fast · Works on all devices</p>
+          <p className="text-center text-sm text-blue-100 font-medium mt-6">No login · Completely free · Ad-free · Fast · Works on all devices</p>
         </div>
       </section>
 

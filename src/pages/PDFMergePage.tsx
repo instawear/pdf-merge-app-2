@@ -7,6 +7,7 @@ import {
   CheckCircle2, AlertCircle, FileText, Info, ArrowUpDown,
   Plus, Trash2, GripVertical, FilePlus
 } from 'lucide-react';
+import { generatePDFThumbnail } from '@/lib/pdfThumbnail';
 
 // ─── Types ─────────────────────────────────────────────────────────────────
 interface PDFFile {
@@ -15,6 +16,7 @@ interface PDFFile {
   name: string;
   size: number;
   pageCount: number;
+  thumbnail?: string;
 }
 
 type MergeStatus = 'idle' | 'merging' | 'done' | 'error';
@@ -64,12 +66,14 @@ function usePDFFiles() {
 
     const processed: PDFFile[] = await Promise.all(
       uniqueFiles.map(async file => {
-        const pageCount = await getPageCount(file);
+        const thumbnail = await generatePDFThumbnail(file);
         return {
           id: generateId(),
           file,
           name: file.name,
           size: file.size,
+          pageCount,
+          thumbnaile.size,
           pageCount,
         };
       })
@@ -299,9 +303,19 @@ function FileItem({
         {index + 1}
       </div>
 
-      <div className="flex-shrink-0 w-10 h-12 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-100 dark:border-red-900/50 flex flex-col items-center justify-center gap-0.5">
-        <FileText className="w-5 h-5 text-red-500" />
-        <span className="text-[9px] font-bold text-red-500 uppercase tracking-wide">PDF</span>
+      <div className="flex-shrink-0 w-10 h-12 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-100 dark:border-red-900/50 flex flex-col items-center justify-center gap-0.5 overflow-hidden">
+        {file.thumbnail ? (
+          <img
+            src={file.thumbnail}
+            alt={`Thumbnail of ${file.name}`}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <>
+            <FileText className="w-5 h-5 text-red-500" />
+            <span className="text-[9px] font-bold text-red-500 uppercase tracking-wide">PDF</span>
+          </>
+        )}
       </div>
 
       <div className="flex-1 min-w-0">
