@@ -103,20 +103,37 @@ export default function Index() {
 
           {/* Headline */}
           <div className="text-center mb-10">
-            <h1 id="hero-heading" className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight mb-4">
+            <h1 id="hero-heading" className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight mb-8">
               <span className="text-white block">Merge PDF Files Online</span>
-              <span className="block text-blue-400 mt-1">Free &amp; No Login Required</span>
+              <span className="block text-blue-400 mt-2">Free &amp; No Login Required</span>
             </h1>
-            <div className="bg-white rounded-2xl p-8 inline-block">
-              <p className="text-xl sm:text-2xl text-black max-w-3xl mx-auto leading-relaxed font-medium">
-                Combine multiple PDF files into one in seconds. No signup, no ads, no server uploads —
-                just fast, secure, browser-based PDF merging.
+            <div className="bg-gradient-to-br from-white via-blue-50 to-indigo-100 rounded-3xl p-10 sm:p-12 inline-block max-w-3xl shadow-2xl border border-blue-100 hover:shadow-3xl transition-all duration-300">
+              <p className="text-2xl sm:text-3xl text-gray-900 leading-relaxed font-semibold tracking-tight">
+                💨 Combine multiple PDF files into one in seconds.<br />
+                🔒 No signup, no ads, no server uploads —<br />
+                ⚡ just fast, secure, browser-based PDF merging.
               </p>
             </div>
           </div>
 
-          {/* Microcopy */}
-          <p className="text-center text-base text-white font-semibold mt-6">No login · Completely free · Ad-free · Fast · Works on all devices</p>
+          {/* Microcopy with Icons */}
+          <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/95 text-gray-900 text-sm font-semibold shadow-lg border border-white/50">
+              🔓 No login
+            </span>
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/95 text-gray-900 text-sm font-semibold shadow-lg border border-white/50">
+              💰 Completely free
+            </span>
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/95 text-gray-900 text-sm font-semibold shadow-lg border border-white/50">
+              🚫 Ad-free
+            </span>
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/95 text-gray-900 text-sm font-semibold shadow-lg border border-white/50">
+              ⚡ Fast
+            </span>
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/95 text-gray-900 text-sm font-semibold shadow-lg border border-white/50">
+              📱 Works on all devices
+            </span>
+          </div>
         </div>
       </section>
 
