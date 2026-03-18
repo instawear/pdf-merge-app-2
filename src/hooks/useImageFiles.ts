@@ -26,12 +26,14 @@ export function useImageFiles() {
     const fileArray = Array.from(newFiles);
     const imageFiles = fileArray.filter(f => {
       const isImage = f.type.startsWith('image/');
-      const supportedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/bmp', 'image/tiff'];
-      return isImage && supportedTypes.includes(f.type);
+      const supportedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/bmp', 'image/tiff', 'image/heic', 'image/heif'];
+      // Also check file extension for HEIC if mime type is not recognized
+      const isHeic = f.name.toLowerCase().endsWith('.heic') || f.name.toLowerCase().endsWith('.heif');
+      return (isImage && supportedTypes.includes(f.type)) || isHeic;
     });
 
     if (imageFiles.length < fileArray.length) {
-      toast.error('Only image files (JPG, PNG, GIF, WebP, BMP, TIFF) are supported.');
+      toast.error('Supported formats: JPG, PNG, GIF, WebP, BMP, TIFF, HEIC. Single image per page coming soon!');
     }
 
     if (imageFiles.length === 0) return;

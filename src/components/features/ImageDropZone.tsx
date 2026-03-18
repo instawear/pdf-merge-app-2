@@ -94,7 +94,7 @@ export default function ImageDropZone({ onFilesAdded, disabled }: ImageDropZoneP
         Upload Images
       </span>
       <p className="text-xs text-muted-foreground mt-3">
-        Supports JPG, PNG, GIF, WebP, BMP, TIFF · All processing happens in your browser
+        Supports JPG, PNG, GIF, WebP, BMP, TIFF, HEIC · All processing happens in your browser
       </p>
 
       <input

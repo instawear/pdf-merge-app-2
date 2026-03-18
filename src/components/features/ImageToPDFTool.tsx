@@ -4,15 +4,144 @@ import ImageDropZone from './ImageDropZone';
 import ImageList from './ImageList';
 import { useImageFiles } from '@/hooks/useImageFiles';
 import { useImageToPDF } from '@/hooks/useImageToPDF';
+import { ImageFile } from '@/hooks/useImageFiles';
+
+// Page Preview Component
+const PagePreview = ({ 
+  image, 
+  pageSize, 
+  margin 
+}: { 
+  image: ImageFile;
+  pageSize: 'a4' | 'letter' | 'auto';
+  margin: 'none' | 'small' | 'big';
+}) => {
+  // Page dimensions in points (1/72 inch)
+  const pageDimensions: Record<'a4' | 'letter', { width: number; height: number }> = {
+    a4: { width: 595, height: 842 },
+    letter: { width: 612, height: 792 },
+  };
+
+  // Margin sizes in points
+  const marginSizes: Record<'none' | 'small' | 'big', number> = {
+    none: 0,
+    small: 20,
+    big: 40,
+  };
+
+  const margin_pt = marginSizes[margin];
+
+  // Get image dimensions from preview
+  const img = new window.Image();
+  const [imgDimensions, setImgDimensions] = useState<{ width: number; height: number } | null>(null);
+
+  if (image && !imgDimensions) {
+    img.onload = () => {
+      setImgDimensions({ width: img.width, height: img.height });
+    };
+    img.src = image.preview;
+  }
+
+  // Calculate page size
+  let pageWidth = pageDimensions.a4.width;
+  let pageHeight = pageDimensions.a4.height;
+
+  if (pageSize === 'letter') {
+    pageWidth = pageDimensions.letter.width;
+    pageHeight = pageDimensions.letter.height;
+  }
+
+  // Scale factor for preview (fit to container)
+  const previewMaxWidth = 160;
+  const scaleFactor = previewMaxWidth / pageWidth;
+  const scaledPageWidth = pageWidth * scaleFactor;
+  const scaledPageHeight = pageHeight * scaleFactor;
+  const scaledMargin = margin_pt * scaleFactor;
+
+  // Calculate image dimensions on page
+  const availableWidth = scaledPageWidth - scaledMargin * 2;
+  const availableHeight = scaledPageHeight - scaledMargin * 2;
+
+  let imgWidth = availableWidth;
+  let imgHeight = availableWidth;
+
+  if (imgDimensions) {
+    const aspectRatio = imgDimensions.height / imgDimensions.width;
+    imgHeight = imgWidth * aspectRatio;
+
+    if (imgHeight > availableHeight) {
+      imgHeight = availableHeight;
+      imgWidth = imgHeight / aspectRatio;
+    }
+  }
+
+  const imgX = scaledMargin + (availableWidth - imgWidth) / 2;
+  const imgY = scaledMargin + (availableHeight - imgHeight) / 2;
+
+  return (
+    <div className="flex flex-col items-center gap-2">
+      <div
+        style={{
+          width: `${scaledPageWidth}px`,
+          height: `${scaledPageHeight}px`,
+          backgroundColor: '#ffffff',
+          border: '1px solid #d1d5db',
+          borderRadius: '4px',
+          position: 'relative',
+          overflow: 'hidden',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}
+      >
+        {/* Margin Area */}
+        {scaledMargin > 0 && (
+          <div
+            style={{
+              position: 'absolute',
+              inset: `${scaledMargin}px`,
+              border: '1px dashed #9ca3af',
+              borderRadius: '2px',
+            }}
+          />
+        )}
+
+        {/* Image */}
+        {image && (
+          <img
+            src={image.preview}
+            alt="Preview"
+            style={{
+              position: 'absolute',
+              left: `${imgX}px`,
+              top: `${imgY}px`,
+              width: `${imgWidth}px`,
+              height: `${imgHeight}px`,
+              objectFit: 'cover',
+              borderRadius: '2px',
+            }}
+          />
+        )}
+      </div>
+
+      {/* Info Text */}
+      <div className="text-xs text-muted-foreground text-center">
+        <p>
+          {pageSize === 'auto' ? 'Auto' : pageSize.toUpperCase()} •{' '}
+          {margin === 'none' ? 'No margin' : margin === 'small' ? 'Small' : 'Big'} margin
+        </p>
+      </div>
+    </div>
+  );
+};
 
 export default function ImageToPDFTool() {
   const { files: images, addFiles, removeFile, reorderFiles, clearFiles, formatFileSize } = useImageFiles();
   const { status, progress, error, convertToPDF, reset } = useImageToPDF();
   const [showDropZone, setShowDropZone] = useState(true);
   const [pageSize, setPageSize] = useState<'a4' | 'letter' | 'auto'>('auto');
+  const [margin, setMargin] = useState<'none' | 'small' | 'big'>('small');
 
   const handleConvert = () => {
-    convertToPDF(images, pageSize);
+    convertToPDF(images, pageSize, margin);
   };
 
   const handleReset = () => {
@@ -72,25 +201,65 @@ export default function ImageToPDFTool() {
           {/* Images List */}
           {hasImages && <ImageList images={images} onRemove={removeFile} onReorder={reorderFiles} formatSize={formatFileSize} />}
 
-          {/* Page Size Selector */}
+          {/* Page Size Selector & Margin Selector */}
           {hasImages && (
-            <div className="p-4 rounded-lg border border-border bg-muted/50">
-              <label className="text-sm font-medium text-foreground mb-2 block">Page Size:</label>
-              <div className="flex gap-2">
-                {['auto', 'a4', 'letter'].map(size => (
-                  <button
-                    key={size}
-                    onClick={() => setPageSize(size as 'a4' | 'letter' | 'auto')}
-                    disabled={isBusy}
-                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                      pageSize === size
-                        ? 'bg-blue-600 text-white'
-                        : 'border border-border bg-background hover:bg-muted disabled:opacity-50'
-                    }`}
-                  >
-                    {size === 'auto' ? 'Auto' : size.toUpperCase()}
-                  </button>
-                ))}
+            <div className="space-y-3">
+              <div className="p-4 rounded-lg border border-border bg-muted/50">
+                <label className="text-sm font-medium text-foreground mb-2 block">Page Size:</label>
+                <div className="flex gap-2">
+                  {['auto', 'a4', 'letter'].map(size => (
+                    <button
+                      key={size}
+                      onClick={() => setPageSize(size as 'a4' | 'letter' | 'auto')}
+                      disabled={isBusy}
+                      className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                        pageSize === size
+                          ? 'bg-blue-600 text-white'
+                          : 'border border-border bg-background hover:bg-muted disabled:opacity-50'
+                      }`}
+                    >
+                      {size === 'auto' ? 'Auto' : size.toUpperCase()}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="p-4 rounded-lg border border-border bg-muted/50">
+                <label className="text-sm font-medium text-foreground mb-2 block">Margin:</label>
+                <div className="flex gap-2">
+                  {[
+                    { value: 'none', label: 'No margin' },
+                    { value: 'small', label: 'Small' },
+                    { value: 'big', label: 'Big' },
+                  ].map(({ value, label }) => (
+                    <button
+                      key={value}
+                      onClick={() => setMargin(value as 'none' | 'small' | 'big')}
+                      disabled={isBusy}
+                      className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                        margin === value
+                          ? 'bg-blue-600 text-white'
+                          : 'border border-border bg-background hover:bg-muted disabled:opacity-50'
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Page Preview */}
+          {hasImages && images.length > 0 && (
+            <div className="p-4 rounded-lg border border-border bg-muted/30">
+              <p className="text-xs font-medium text-muted-foreground mb-3">Preview:</p>
+              <div className="flex justify-center">
+                <PagePreview 
+                  image={images[0]}
+                  pageSize={pageSize}
+                  margin={margin}
+                />
               </div>
             </div>
           )}

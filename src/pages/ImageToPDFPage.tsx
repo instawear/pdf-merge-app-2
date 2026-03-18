@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Moon, Sun, Shield, Zap, FileText, ChevronDown as ChevronDownIcon, Download, Image, Layers, Smartphone, Lock } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import ImageToPDFTool from '@/components/features/ImageToPDFTool';
@@ -50,15 +51,15 @@ export default function ImageToPDFPage() {
       {/* ── Navbar ── */}
       <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-md">
         <div className="container mx-auto max-w-6xl px-4 h-16 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-2.5 group" aria-label="Home">
+          <Link to="/" className="flex items-center gap-2.5 group" aria-label="Home">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
               <FileText className="w-4 h-4 text-white" />
             </div>
             <span className="font-bold text-lg text-foreground">PDF<span className="text-blue-600">Merge</span></span>
-          </a>
+          </Link>
           <nav className="hidden md:flex items-center gap-6" aria-label="Main navigation">
-            <a href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">PDF Merger</a>
-            <a href="/image-to-pdf" className="text-sm font-medium text-blue-600">Image to PDF</a>
+            <Link to="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">PDF Merger</Link>
+            <Link to="/image-to-pdf" className="text-sm font-medium text-blue-600">Image to PDF</Link>
             <a href="#how-to" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">How It Works</a>
             <a href="#faq" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">FAQ</a>
           </nav>
